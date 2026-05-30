@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "checkJs": false,
+    "allowJs": true,
+    "baseUrl": "frontend",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["frontend/src/**/*.js", "frontend/src/**/*.jsx"],
+  "exclude": ["node_modules", "frontend/dist"]
+}

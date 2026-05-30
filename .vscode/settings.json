@@ -1,0 +1,14 @@
+{
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true,
+  "javascript.suggest.paths": true,
+  "typescript.suggest.paths": true,
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "javascript.preferences.jsxAttributeCompletionStyle": "auto",
+  "typescript.preferences.jsxAttributeCompletionStyle": "auto",
+  "typescript.preferences.includePackageJsonAutoImports": "auto",
+  "editor.suggest.showModules": true,
+  "editor.suggest.showKeywords": true,
+  "editor.suggest.showSnippets": true
+}
