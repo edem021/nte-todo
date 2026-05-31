@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import TodoForm from "./components/TodoForm.jsx";
 import TodoList from "./components/TodoList.jsx";
 import ResetCountdown from "./components/ResetCountdown.jsx";
-import { getNextDailyReset, getNextWeeklyReset } from "./utils/resetTime.js";
+import {
+  applyResets,
+  getNextDailyReset,
+  getNextWeeklyReset,
+} from "./utils/resetTime.js";
 
 function loadTodos(key) {
   const localValue = localStorage.getItem(key);
@@ -11,10 +15,9 @@ function loadTodos(key) {
 }
 
 function App() {
-  const [todos, setTodos] = useState(() => ({
-    weekly: loadTodos("WEEKLYITEMS"),
-    daily: loadTodos("DAILYITEMS"),
-  }));
+  const [todos, setTodos] = useState(() =>
+    applyResets(loadTodos("WEEKLYITEMS"), loadTodos("DAILYITEMS")),
+  );
 
   useEffect(() => {
     localStorage.setItem("WEEKLYITEMS", JSON.stringify(todos.weekly));
