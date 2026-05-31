@@ -6,7 +6,9 @@
     "jsx": "react-jsx",
     "checkJs": false,
     "allowJs": true,
+    "types": [],
     "baseUrl": "frontend",
+    "typeRoots": ["./frontend/node_modules/@types"],
     "paths": {
       "@/*": ["src/*"]
     }
