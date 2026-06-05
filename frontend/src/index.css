@@ -1,22 +1,47 @@
 @import "tailwindcss";
 
-.todo-card{
-  @apply w-115 h-150 flex flex-col gap-1
+.header {
+  @apply fixed top-0 h-15 bg-sky-950/90 w-full px-4 border-b-3 border-b-slate-900 flex items-center justify-between;
 }
 
-.card-content{
-  @apply bg-sky-950/90 rounded-xl border-3 border-slate-900 h-full flex flex-col
+.todo-card {
+  @apply w-115 h-150 flex flex-col gap-1;
 }
 
-.card-title{
-  @apply text-sky-100 border-3 tracking-widest border-slate-900 rounded-xl w-full py-1 text-2xl bg-sky-950/90 flex justify-center items-center font-bold text-shadow-md text-shadow-black
+.card-content {
+  @apply bg-sky-950/90 rounded-xl border-3 border-slate-900 h-full flex flex-col;
 }
 
-.page-bg{
+.card-title {
+  @apply text-sky-100 border-3 tracking-widest border-slate-900 rounded-xl w-full py-1 text-2xl bg-sky-950/90 flex justify-center items-center font-bold text-shadow-md text-shadow-black;
+}
+
+.page-bg {
   background-image: url("./assets/nte-bg-sakura-tree.png");
-  @apply min-h-screen flex justify-center items-center bg-cover bg-no-repeat bg-center
+  @apply min-h-screen flex justify-center items-center bg-cover bg-no-repeat bg-center;
 }
 
-.timer{
-  @apply mt-auto flex items-center justify-center py-1 w-full border-t-3 border-black text-lg text-sky-100 text-shadow-black text-shadow-md
+.timer {
+  @apply mt-auto flex items-center justify-center py-1 w-full border-t-3 border-black text-lg text-sky-100 text-shadow-black text-shadow-md;
+}
+
+h1 {
+  font-family: "Playfair Display", serif;
+  @apply text-2xl italic font-bold text-sky-100 tracking-wide;
+}
+
+.playtime-container {
+  @apply border h-[60%] rounded-full flex items-center px-4 border-sky-100 bg-slate-900/90
+}
+
+.playtime-buttons {
+  @apply flex justify-center items-center pr-4 text-sky-100
+}
+
+.playtime-counter {
+  @apply text-sky-100 text-shadow-md text-shadow-black
+}
+
+.playtime-button {
+  @apply cursor-pointer
 }

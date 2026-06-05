@@ -7,6 +7,8 @@ import {
   getNextDailyReset,
   getNextWeeklyReset,
 } from "./utils/resetTime.js";
+import { loadPlaytime, formatPlayTime } from "./utils/playtime.js";
+import Header from "./components/Header.jsx";
 
 function loadTodos(key) {
   const localValue = localStorage.getItem(key);
@@ -15,6 +17,10 @@ function loadTodos(key) {
 }
 
 function App() {
+  const [totalMs, setTotalMs] = useState(() => loadPlaytime());
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [sessionStart, setSessionStart] = useState(null);
+  const [displayMs, setDisplayMs] = useState(() => loadPlaytime());
   const [todos, setTodos] = useState(() =>
     applyResets(loadTodos("WEEKLYITEMS"), loadTodos("DAILYITEMS")),
   );
@@ -23,6 +29,41 @@ function App() {
     localStorage.setItem("WEEKLYITEMS", JSON.stringify(todos.weekly));
     localStorage.setItem("DAILYITEMS", JSON.stringify(todos.daily));
   }, [todos]);
+
+  useEffect(() => {
+    localStorage.setItem("PLAYTIME_TOTAL_MS", String(totalMs));
+  }, [totalMs]);
+
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    const intervalId = setInterval(() => {
+      const elapsed = Date.now() - sessionStart;
+      setDisplayMs(totalMs + elapsed);
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [isPlaying, sessionStart, totalMs]);
+
+  const handlePlay = () => {
+    if (isPlaying) return;
+
+    const now = Date.now();
+    setSessionStart(now);
+    setIsPlaying(true);
+  };
+
+  const handlePause = () => {
+    if (!isPlaying) return;
+
+    const elapsed = Date.now() - sessionStart;
+    const newTotal = totalMs + elapsed;
+
+    setTotalMs(newTotal);
+    setDisplayMs(newTotal);
+    setSessionStart(null);
+    setIsPlaying(false);
+  };
 
   const updateList = (listKey, updater) => {
     setTodos((current) => ({
@@ -50,7 +91,14 @@ function App() {
 
   return (
     <div className="page-bg">
-      <div className="flex gap-120">
+      <Header
+        displayTime={formatPlayTime(displayMs)}
+        isPlaying={isPlaying}
+        onPlay={handlePlay}
+        onPause={handlePause}
+      />
+
+      <main className="flex gap-120">
         <div className="todo-card">
           <h2 className="card-title">WEEKLY TASKS</h2>
 
@@ -82,7 +130,7 @@ function App() {
             <ResetCountdown getNextReset={getNextDailyReset} />
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
