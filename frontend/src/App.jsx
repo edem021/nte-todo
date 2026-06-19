@@ -48,6 +48,8 @@ function App() {
   const handlePlay = () => {
     if (isPlaying) return;
 
+    document.title = "(Stop the timer) NTE todo";
+
     const now = Date.now();
     setSessionStart(now);
     setIsPlaying(true);
@@ -55,6 +57,8 @@ function App() {
 
   const handlePause = () => {
     if (!isPlaying) return;
+
+    document.title = "NTE todo";
 
     const elapsed = Date.now() - sessionStart;
     const newTotal = totalMs + elapsed;
