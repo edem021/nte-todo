@@ -4,6 +4,10 @@
   @apply fixed top-0 h-15 bg-sky-950/90 w-full px-4 border-b-3 border-b-slate-900 flex items-center justify-between;
 }
 
+.main-container {
+  @apply flex flex-col gap-10 items-center justify-center min-h-screen;
+}
+
 .todo-card {
   @apply w-115 h-150 flex flex-col gap-1;
 }
@@ -14,6 +18,10 @@
 
 .card-title {
   @apply text-sky-100 border-3 tracking-widest border-slate-900 rounded-xl w-full py-1 text-2xl bg-sky-950/90 flex justify-center items-center font-bold text-shadow-md text-shadow-black;
+}
+
+.todo-survey {
+  @apply bg-sky-950/90 w-300 h-50 rounded-xl border-3 border-slate-900 text-sky-100;
 }
 
 .page-bg {
@@ -31,17 +39,27 @@ h1 {
 }
 
 .playtime-container {
-  @apply border h-[60%] rounded-full flex items-center px-4 border-sky-100 bg-slate-900/90
+  @apply border h-[60%] rounded-full flex items-center px-4 border-sky-100 bg-slate-900/90;
 }
 
 .playtime-buttons {
-  @apply flex justify-center items-center pr-4 text-sky-100
+  @apply flex justify-center items-center pr-4 text-sky-100;
 }
 
 .playtime-counter {
-  @apply text-sky-100 text-shadow-md text-shadow-black
+  @apply text-sky-100 text-shadow-md text-shadow-black;
 }
 
 .playtime-button {
-  @apply cursor-pointer
+  @apply cursor-pointer;
+}
+
+html,
+body,
+#root {
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+}
+
+*::-webkit-scrollbar {
+  background: transparent;
 }

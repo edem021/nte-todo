@@ -9,6 +9,7 @@ import {
 } from "./utils/resetTime.js";
 import { loadPlaytime, formatPlayTime } from "./utils/playtime.js";
 import Header from "./components/Header.jsx";
+import TextAreaForSurvey from "./components/TextAreaForSurvey.jsx";
 
 function loadTodos(key) {
   const localValue = localStorage.getItem(key);
@@ -102,37 +103,43 @@ function App() {
         onPause={handlePause}
       />
 
-      <main className="flex gap-120">
-        <div className="todo-card">
-          <h2 className="card-title">WEEKLY TASKS</h2>
+      <main className="main-container">
+        <div className="flex gap-120">
+          <div className="todo-card">
+            <h2 className="card-title">WEEKLY TASKS</h2>
 
-          <div className="card-content">
-            <TodoForm onSubmit={(text) => addTodo("weekly", text)} />
+            <div className="card-content">
+              <TodoForm onSubmit={(text) => addTodo("weekly", text)} />
 
-            <TodoList
-              todos={todos.weekly}
-              onToggle={(id, completed) => toggleTodo("weekly", id, completed)}
-              onDelete={(id) => deleteTodo("weekly", id)}
-            />
+              <TodoList
+                todos={todos.weekly}
+                onToggle={(id, completed) => toggleTodo("weekly", id, completed)}
+                onDelete={(id) => deleteTodo("weekly", id)}
+                />
 
-            <ResetCountdown getNextReset={getNextWeeklyReset} />
+              <ResetCountdown getNextReset={getNextWeeklyReset} />
+            </div>
+          </div>
+
+          <div className="todo-card">
+            <h2 className="card-title">DAILY TASKS</h2>
+
+            <div className="card-content">
+              <TodoForm onSubmit={(text) => addTodo("daily", text)} />
+
+              <TodoList
+                todos={todos.daily}
+                onToggle={(id, completed) => toggleTodo("daily", id, completed)}
+                onDelete={(id) => deleteTodo("daily", id)}
+                />
+
+              <ResetCountdown getNextReset={getNextDailyReset} />
+            </div>
           </div>
         </div>
 
-        <div className="todo-card">
-          <h2 className="card-title">DAILY TASKS</h2>
-
-          <div className="card-content">
-            <TodoForm onSubmit={(text) => addTodo("daily", text)} />
-
-            <TodoList
-              todos={todos.daily}
-              onToggle={(id, completed) => toggleTodo("daily", id, completed)}
-              onDelete={(id) => deleteTodo("daily", id)}
-            />
-
-            <ResetCountdown getNextReset={getNextDailyReset} />
-          </div>
+        <div className="todo-survey">
+          <TextAreaForSurvey />
         </div>
       </main>
     </div>
